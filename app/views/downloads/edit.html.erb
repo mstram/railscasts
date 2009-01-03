@@ -1,0 +1,37 @@
+<h1>Editing download</h1>
+
+<%= error_messages_for :download %>
+
+<% form_for(@download) do |f| %>
+  <p>
+    <b>Episode</b><br />
+    <%= f.text_field :episode_id %>
+  </p>
+
+  <p>
+    <b>Url</b><br />
+    <%= f.text_field :url %>
+  </p>
+
+  <p>
+    <b>Format</b><br />
+    <%= f.text_field :format %>
+  </p>
+
+  <p>
+    <b>Bytes</b><br />
+    <%= f.text_field :bytes %>
+  </p>
+
+  <p>
+    <b>Seconds</b><br />
+    <%= f.text_field :seconds %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @download %> |
+<%= link_to 'Back', downloads_path %>

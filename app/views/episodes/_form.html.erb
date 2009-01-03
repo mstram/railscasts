@@ -1,0 +1,45 @@
+<div class="content">
+  <%= error_messages_for :episode %>
+  <% form_for @episode do |f| %>
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :tag_names, 'Tags' %><br />
+      <%= f.text_field :tag_names %>
+    </p>
+    <p>
+      <%= f.label :description %><br />
+      <%= f.text_area :description, :rows => 6 %>
+    </p>
+    <p>
+      <%= f.label :notes %><br />
+      <%= f.text_area :notes, :rows => 10 %>
+    </p>
+    <p>
+      <%= f.label :published_at, 'Publish Date' %><br />
+      <%= f.date_select :published_at %>
+    </p>
+    <% for download in @episode.downloads %>
+      <% fields_for_download(download) do |d| %>
+        <%= error_messages_for :download, :object => download %>
+        <h3><%=h download.format %></h3>
+        <div><%= d.hidden_field :format %></div>
+        <p>
+          <%= d.label :url, 'File URL' %><br />
+          <%= d.text_field :url %>
+        </p>
+        <p>
+          <%= d.label :bytes, 'Size in Bytes' %><br />
+          <%= d.text_field :bytes %>
+        </p>
+        <p>
+          <%= d.label :duration, 'Duration' %><br />
+          <%= d.text_field :duration %>
+        </p>
+      <% end %>
+    <% end %>
+    <p><%= f.submit "Submit" %></p>
+  <% end %>
+</div>

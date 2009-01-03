@@ -1,0 +1,37 @@
+<% title @episode.name, false %>
+
+<% content_tag :head do %>
+  <link rel="alternate" type="application/rss+xml" title="Episode Comments RSS" href="<%= formatted_episode_url(@episode, :rss) %>" />
+<% end %>
+
+<div class="episodes">
+  <% render :layout => @episode do %>
+    <div class="notes">
+      <%= textilize @episode.notes %>
+    </div>
+    <div id="episode_nav">
+    <% unless @episode.first? %>
+      <div id="previous_episode"><%= link_to h('< Previous Episode'), @episode.higher_item %></div>
+    <% end %>
+    <% unless @episode.last_published? || @episode.last? %>
+      <div id="next_episode"><%= link_to h('Next Episode >'), @episode.lower_item %></div>
+    <% end %>
+    </div>
+    <div class="clear"></div>
+  <% end %>
+</div>
+
+<% unless @episode.comments.empty? %>
+  <h3 class="content" id="comment_count">
+    <%= link_to image_tag('icons/feed.gif', :alt => "RSS Feed for Episode Comments", :size => '16x16'), formatted_episode_path(@episode, :rss) %>
+    <%= pluralize @episode.comments.size, 'comment' %>
+  </h3>
+  <div id="comments" class="content">
+    <%= render :partial => @episode.comments %>
+  </div>
+<% end %>
+
+<div class="content add_comment">
+  <h3>Add your comment:</h3>
+  <%= render :partial => 'comments/form' %>
+</div>

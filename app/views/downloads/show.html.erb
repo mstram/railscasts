@@ -1,0 +1,39 @@
+<p>
+  <b>Episode:</b>
+  <%=h @download.episode_id %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @download.url %>
+</p>
+
+<p>
+  <b>Format:</b>
+  <%=h @download.format %>
+</p>
+
+<p>
+  <b>Bytes:</b>
+  <%=h @download.bytes %>
+</p>
+
+<p>
+  <b>Seconds:</b>
+  <%=h @download.seconds %>
+</p>
+
+<p>
+<%= "@download.url  = '#{@download.url}'<p><p>" %>
+
+<!-- <%= link_to "Download", 'junk' %> -->
+
+ <%= link_to "Download", 'getfile/#{@download.url}' %>
+
+<!-- <%= link_to "Download it Now", {:action => 'download', :path =>@download.url } %> -->
+
+<!-- <%= link_to "Download action", {:action => 'download'} %> -->
+
+<p>
+<%= link_to 'Edit', edit_download_path(@download) %> |
+<%= link_to 'Back', downloads_path %>

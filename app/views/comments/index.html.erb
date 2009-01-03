@@ -1,0 +1,15 @@
+<% title "Recent Comments" %>
+<% content_tag :head do %>
+  <link rel="alternate" type="application/rss+xml" title="Comments RSS" href="http://feeds.feedburner.com/railscasts_comments" />
+<% end %>
+
+<div id="comments" class="content">
+  <% for comment in @comments %>
+    <% render :layout => comment do %>
+      <h4>
+        Episode #<%= comment.episode.position %>:
+        <%= link_to h(comment.episode.name), episode_path(:id => comment.episode, :anchor => dom_id(comment)) %>
+      </h4>
+    <% end %>
+  <% end %>
+</div>
